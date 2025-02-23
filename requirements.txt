@@ -1,0 +1,8 @@
+fastapi
+uvicorn
+dotenv
+openai
+tqdm
+docker
+pytest
+requests
