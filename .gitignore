@@ -34,3 +34,6 @@ htmlcov/
 
 # Ignore everything inside the notes folder
 notes/*
+
+# Ignore everything inside the test_results folder
+test_results/*
