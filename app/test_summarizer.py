@@ -21,20 +21,34 @@ def read_notes():
     return notes
 
 @pytest.mark.parametrize("filename, note_text", read_notes())
-def test_summarizer(filename, note_text):
-    """Test summarizer on all note files and store results."""
+def test_summarizer_brief(filename, note_text):
+    """Test summarizer in brief mode on all note files and store results."""
     summarizer = MedicalTextSummarizer()
     
-    summary = summarizer.summarize(note_text)
+    summary = summarizer.summarize(note_text, mode="brief")
 
     # Save the result in the test_results folder
-    result_file = os.path.join(RESULTS_DIR, f"summary_{filename}")
+    result_file = os.path.join(RESULTS_DIR, f"summary_brief_{filename}")
     with open(result_file, "w", encoding="utf-8") as f:
         f.write(summary)
-
-    print(f"\nStored summary for {filename} in {result_file}")
     
     assert isinstance(summary, str) and len(summary) > 0
+
+@pytest.mark.parametrize("filename, note_text", read_notes())
+def test_summarizer_json(filename, note_text):
+    """Test summarizer in JSON mode on all note files and store results."""
+    summarizer = MedicalTextSummarizer()
+    
+    summary = summarizer.summarize(note_text, mode="json")
+    
+    # Save the result in the test_results folder
+    result_file = os.path.join(RESULTS_DIR, f"summary_json_{filename}")
+    with open(result_file, "w", encoding="utf-8") as f:
+        f.write(str(summary))
+    
+    expected_keys = {"Patient Name", "Age", "Date of Visit", "Critical Conditions", "General Summary"}
+    assert isinstance(summary, dict)
+    assert expected_keys.issubset(summary.keys())
 
 def test_invalid_input():
     summarizer = MedicalTextSummarizer()
