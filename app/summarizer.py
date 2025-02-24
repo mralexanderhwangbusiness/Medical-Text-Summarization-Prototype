@@ -1,5 +1,5 @@
 import openai
-from app.config import API_KEY, MODEL_NAME
+from config import API_KEY, MODEL_NAME
 
 class MedicalTextSummarizer:
     def __init__(self):

@@ -1,6 +1,6 @@
 import pytest
 import os
-from app.summarizer import MedicalTextSummarizer
+from summarizer import *
 
 # Define paths
 NOTES_DIR = "notes/stroke_notes"
