@@ -69,18 +69,69 @@ POST /summarize
 🔹 **Request Body:**
 ```json
 {
-  "text": "71-year-old male with hypertension and chest pain."
+  "text": "71-year-old male with hypertension and chest pain.",
+  "mode": "brief"
 }
 ```
-🔹 **Response:**
+
+### **Modes of Summarization**
+#### **1. Brief Mode (`mode=brief`)**
+Returns a concise summary of the medical text.
+
+🔹 **Example Request:**
+```json
+{
+  "text": "71-year-old male with hypertension and chest pain.",
+  "mode": "brief"
+}
+```
+
+🔹 **Example Response:**
 ```json
 {
   "summary": "71-year-old male with hypertension and chest pain. Admitted for observation."
 }
 ```
 
+#### **2. JSON Mode (`mode=json`)**
+Extracts structured information from the medical text and returns it in JSON format.
+
+🔹 **Example Request:**
+```json
+{
+  "text": "71-year-old male with hypertension and chest pain.",
+  "mode": "json"
+}
+```
+
+🔹 **Example Response:**
+```json
+{
+  "patient_name": "",
+  "age": "71",
+  "date_of_visit": "",
+  "critical_conditions": "hypertension, chest pain",
+  "general_summary": "Patient presents with hypertension and chest pain.",
+  "discharge_notes": "Admitted for observation."
+}
+```
+
+## 📜 Logging
+The API includes logging functionality to track requests, responses, and errors.
+
+- **INFO Logs**: Logs request mode, input length, processing time, input/output token usage.
+- **DEBUG Logs**: Captures the summarized output.
+- **ERROR Logs**: Logs errors such as invalid input or failed API requests.
+
+### Example Log Entry:
+```
+2025-02-26 12:00:00 - INFO - Processing summary request - Mode: json, Input Length: 120 chars
+2025-02-26 12:00:01 - INFO - Summary generated in 1.20s | Input Tokens: 50, Output Tokens: 30
+2025-02-26 12:00:01 - DEBUG - Summarized Output: {...}
+```
+
 ## 🧪 Testing
-### **Run All Tests Using Pytest with logs**
+### **Run All Tests Using Pytest with Logs**
 ```bash
 pytest -s --log-cli-level=INFO
 ```
