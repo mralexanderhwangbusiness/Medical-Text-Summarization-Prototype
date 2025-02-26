@@ -80,21 +80,13 @@ POST /summarize
 ```
 
 ## 🧪 Testing
-### **Run All Tests Using Pytest**
+### **Run All Tests Using Pytest with logs**
 ```bash
-pytest
+pytest -s --log-cli-level=INFO
 ```
 🔹 **Test results will be stored in the `test_results` directory.**
-
-## 📜 Scripts
-- **`scripts/run_server.sh`**: Script to run the FastAPI server.
-
-## 📄 License
-This project is licensed under the **MIT License**. See the `LICENSE` file for more details.
 
 ## 🙌 Acknowledgements
 - **OpenAI** for providing the GPT-4 model.
 - **FastAPI** for the web framework.
-- **Pydantic** for data validation.
-
 
