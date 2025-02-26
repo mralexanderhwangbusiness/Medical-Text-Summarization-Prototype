@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from summarizer import MedicalTextSummarizer
-from models import SummarizationRequest
+from app.summarizer import MedicalTextSummarizer
+from app.models import SummarizationRequest
 
 router = APIRouter()
 summarizer = MedicalTextSummarizer()

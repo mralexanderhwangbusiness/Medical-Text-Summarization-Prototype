@@ -1,9 +1,7 @@
 import openai
-import re
 import time
-import logging
-from config import API_KEY, MODEL_NAME
-from logging_config import logger
+from app.config import API_KEY, MODEL_NAME
+from app.logging_config import logger
 
 class MedicalTextSummarizer:
     def __init__(self):

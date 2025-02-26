@@ -1,6 +1,6 @@
 import pytest
 import os
-from summarizer import *
+from app.summarizer import *
 
 # Define paths
 NOTES_DIR = "notes/stroke_notes"
