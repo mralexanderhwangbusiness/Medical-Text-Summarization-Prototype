@@ -8,6 +8,7 @@ class MedicalTextSummarizer:
             raise ValueError("API key is missing. Set OPENAI_API_KEY in your environment.")
         self.api_key = API_KEY
 
+
     def summarize(self, text: str, mode: str = "brief"):
         if not text:
             raise ValueError("Invalid input: Text must be a non-empty string.")
@@ -16,8 +17,20 @@ class MedicalTextSummarizer:
             prompt = f"Summarize the following medical note very concisely: {text}"
         elif mode == "json":
             prompt = (
-                "Extract the following details from the medical note. Return the output as a JSON object, but do not include '''json '''. Ensure correct JSON format with the following keys: Patient Name, Age, Date of Visit, Critical Conditions, and General Summary. If any key cannot be found, just fill it with an NA"
-                f"\nMedical Note:\n{text}"
+                "Make sure to ONLY return the JSON format results and DO NOT INCLUDE '''json and '''.\n"
+                "Important note: never make up or generate random results if you are not sure.\n"
+                "critical_conditions should list the conditions separated by commas.\n"
+                "general_summary should be an extremely concise summary of the notes.\n"
+                "Format:\n"
+                "{\n"
+                '"patient_name": "",\n'
+                '"age": "",\n'
+                '"date_of_visit": "",\n'
+                '"critical_conditions": "",\n'
+                '"general_summary": "",\n'
+                '"discharge_notes": ""\n'
+                "}\n"
+                f"Extract these details from the following medical note:\n{text}"
             )
         else:
             raise ValueError("Invalid mode. Choose either 'brief' or 'json'.")

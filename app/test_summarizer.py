@@ -46,7 +46,14 @@ def test_summarizer_json(filename, note_text):
     with open(result_file, "w", encoding="utf-8") as f:
         f.write(str(summary))
     
-    expected_keys = {"Patient Name", "Age", "Date of Visit", "Critical Conditions", "General Summary"}
+    expected_keys = {
+        "patient_name",
+        "age",
+        "date_of_visit",
+        "critical_conditions",
+        "general_summary",
+        "discharge_notes"
+    }
     assert isinstance(summary, dict)
     assert expected_keys.issubset(summary.keys())
 
